@@ -1,0 +1,172 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API Evangelist - Business API",
+    "description": "This is a template business API from API Evangelist.",
+    "termsOfService": "http://apievangelist.com/terms-of-service.html",
+    "version": "v1"
+  },
+  "host": "business.api.apievangelist.com",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/business/": {
+      "get": {
+        "summary": "Finds all business",
+        "description": "Returns a list of all business, allowing you to filter by state and keyword query.",
+        "operationId": "getBusinesses",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "description": "a text query to search across facilities",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "business response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/business"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errorModel"
+            }
+          }
+        },
+        "tags": [
+          "Business"
+        ]
+      }
+    },
+    "/business/{id}": {
+      "get": {
+        "summary": "Retrieve a business using its ID",
+        "description": "Returns a business detail",
+        "operationId": "getOffice",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id for the business, notice this is in the path, not a query variable",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "business response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/business"
+              }
+            }
+          },
+          "default": {
+            "description": "unexpected error",
+            "schema": {
+              "$ref": "#/definitions/errorModel"
+            }
+          }
+        },
+        "tags": [
+          "Business"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "business": {
+      "properties": {
+        "id": {
+          "description": "This is a default description.",
+          "type": "string"
+        },
+        "name": {
+          "description": "This is a default description.",
+          "type": "string"
+        },
+        "description": {
+          "description": "This is a default description.",
+          "type": "string"
+        },
+        "url": {
+          "description": "This is a default description.",
+          "type": "string"
+        },
+        "image": {
+          "description": "This is a default description.",
+          "type": "string"
+        },
+        "tags": {
+          "description": "This is a default description.",
+          "type": "string"
+        },
+        "streetAddress": {
+          "description": "This is a default description.",
+          "type": "string"
+        },
+        "addressLocality": {
+          "description": "This is a default description.",
+          "type": "string"
+        },
+        "addressRegion": {
+          "description": "This is a default description.",
+          "type": "string"
+        },
+        "postalCode": {
+          "description": "This is a default description.",
+          "type": "string"
+        },
+        "telephone": {
+          "description": "This is a default description.",
+          "type": "string"
+        },
+        "email": {
+          "description": "This is a default description.",
+          "type": "string"
+        },
+        "map": {
+          "description": "This is a default description.",
+          "type": "string"
+        },
+        "latitude": {
+          "description": "This is a default description.",
+          "type": "string"
+        },
+        "longitude": {
+          "description": "This is a default description.",
+          "type": "string"
+        }
+      }
+    },
+    "errorModel": {
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
